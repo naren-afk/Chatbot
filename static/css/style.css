@@ -1,0 +1,369 @@
+/* === THEME COLORS AND VARIABLES === */
+:root {
+    --primary-color: #0d1117;
+    --secondary-color: #1f6feb;
+    --success-color: #238636;
+    --warning-color: #d29922;
+    --danger-color: #f85149;
+    --info-color: #388bfd;
+    --light-color: #21262d;
+    --dark-color: #0d1117;
+    --text-light: #c9d1d9;
+    --text-muted: #8b949e;
+    --border-color: #30363d;
+}
+
+/* === GLOBAL === */
+body {
+    background-color: var(--dark-color);
+    color: var(--text-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* === NAVIGATION (if used) === */
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+/* === CHAT CONTAINER LAYOUT === */
+.chat-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    width: 200vh;
+}
+
+/* === LEFT SIDEBAR === */
+.left-sidebar {
+    width: 260px;
+    background-color: var(--primary-color);
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.folder-dropdown {
+    background-color: var(--light-color);
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+/* === STATUS CARDS === */
+.stat-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--light-color);
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.stat-number {
+    font-size: 0.85rem;
+}
+
+/* === CHAT AREA === */
+.chat-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #161b22;
+    overflow: hidden;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ai-avatar {
+    background-color: var(--secondary-color);
+    color: #fff;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+/* === CHAT MESSAGES === */
+.messages-container {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.chat-message {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    max-width: 85%;
+    word-wrap: break-word;
+    background-color: var(--light-color);
+    color: var(--text-light);
+}
+
+.chat-message.user {
+    background-color: var(--secondary-color);
+    color: white;
+    margin-left: auto;
+    text-align: right;
+}
+
+.chat-message.ai {
+    border-left: 4px solid var(--success-color);
+}
+
+.message-time {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    margin-top: 0.25rem;
+}
+
+.message-content {
+    line-height: 1.5;
+}
+
+/* === QUICK PROMPTS === */
+.quick-prompts {
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--primary-color);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.prompt-btn,
+.example-query {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 5px;
+    background-color: var(--light-color);
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.prompt-btn:hover,
+.example-query:hover {
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+
+/* === INPUT AREA === */
+.input-area {
+    display: flex;
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--primary-color);
+}
+
+.input-container {
+    flex: 1;
+    display: flex;
+    background-color: var(--light-color);
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.input-container input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    padding: 0.5rem;
+    outline: none;
+}
+
+.attach-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.send-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+/* === RIGHT SIDEBAR === */
+.right-sidebar {
+    width: 400px;
+    background-color: var(--primary-color);
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.charts-container {
+    margin-top: 1rem;
+}
+
+/* === CHART STYLING === */
+.chart-container {
+    width: 300px;
+    margin-bottom: 2rem;
+}
+
+#chartsContainer .text-muted {
+    color: #c9d1d9 !important; /* light grayish white */
+}
+
+.chart-card {
+    width: 360px;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: var(--light-color);
+}
+
+.chart-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chart-body {
+    padding: 1rem;
+}
+
+.chart-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.25rem;
+}
+
+.chart-description {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background-color: #161b22;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* === MODALS === */
+.modal-content {
+    background-color: var(--light-color);
+    color: var(--text-light);
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* === STATUS BADGES === */
+.badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+}
+
+/* === MACHINE INFO SECTION === */
+#machineInfo {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+
+#machineFiles {
+    background-color: #ffffff;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    font-family: 'Courier New', monospace;
+}
+
+/* === EXPORT === */
+.export-controls {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.export-controls .btn {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* === SCROLLBARS === */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+/* === ANIMATIONS === */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* === PRINT STYLES === */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    .card, .chart-container {
+        break-inside: avoid;
+    }
+}
+
+/* === TABLES === */
+pre code {
+    background-color: #1f1f1f;
+    color: #e6e6e6;
+    padding: 0.75rem;
+    display: block;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+table th, table td {
+    border: 1px solid #444;
+    padding: 0.5rem 1rem;
+    text-align: left;
+}
+
+table th {
+    background-color: #21262d;
+    color: #fff;
+}

@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block title %}Wimera AI Assistant{% endblock %}
+
+{% block content %}
+<div class="chat-container">
+    <!-- LEFT SIDEBAR -->
+    <div class="left-sidebar">
+        <h2>Wimera AI</h2>
+
+        <!-- Machine Selection -->
+        <div class="mt-3">
+            <label for="machineSelect" class="form-label text-light">Select Machine</label>
+            <select id="machineSelect" class="form-select folder-dropdown">
+                <option value="">Choose a machine...</option>
+                {% for machine in machines %}
+                    <option value="{{ machine }}">{{ machine }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Machine Info -->
+        <div id="machineInfo" class="d-none mt-3">
+            <h6 class="text-light mb-2">Machine Details</h6>
+            <div id="machineFiles" class="small text-muted mb-3"></div>
+            <button class="btn btn-outline-light btn-sm" id="refreshFiles">
+                <i class="fas fa-sync-alt me-1"></i>Refresh Files
+            </button>
+        </div>
+
+        <!-- Status Indicators -->
+        <div class="statistics mt-4">
+            <h5 class="text-light"><i class="fas fa-signal"></i> Status</h5>
+            <div class="stat-card">
+                <div>
+                    <div class="stat-number" id="dataStatus">No machine selected</div>
+                    <div class="stat-label">Data Status</div>
+                </div>
+                <div><i class="fas fa-database text-secondary"></i></div>
+            </div>
+            <div class="stat-card">
+                <div>
+                    <div class="stat-number" id="aiStatus">Ready</div>
+                    <div class="stat-label">AI Status</div>
+                </div>
+                <div><i class="fas fa-brain text-success"></i></div>
+            </div>
+            <div class="stat-card">
+                <div>
+                    <div class="stat-number" id="chartCount">0</div>
+                    <div class="stat-label">Charts</div>
+                </div>
+                <div><i class="fas fa-chart-bar text-info"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAT AREA -->
+    <div class="chat-area">
+        <!-- Chat Header -->
+        <div class="chat-header">
+            <div class="ai-info">
+                <div>
+                    <h4 class="mb-0 text-light">Chat Area</h4>
+                    <small id="connection-text" class="text-muted">Ready to help</small>
+                </div>
+            </div>
+            <div class="chat-actions">
+                <button class="btn btn-outline-light btn-sm" onclick="clearChat()">
+                    <i class="fas fa-trash"></i> Clear Chat
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Messages -->
+        <div id="chatMessages" class="messages-container">
+            <div class="chat-message ai fade-in">
+                <div class="message-content">
+                    Hello! Select a machine and ask me anything about your manufacturing data.
+                </div>
+                <div class="message-time">Just now</div>
+            </div>
+        </div>
+
+        <!-- Quick Prompts -->
+        <div class="quick-prompts">
+            <button class="example-query prompt-btn" data-query="Give me a summary of May 2025">📊 Summary May 2025</button>
+            <button class="example-query prompt-btn" data-query="Compare production between May 2024 and May 2025">📈 Compare Periods</button>
+            <button class="example-query prompt-btn" data-query="Show me OEE trends for May 2024">📉 OEE Analysis</button>
+            <button class="example-query prompt-btn" data-query="Quality analysis for May 2025">🔍 Quality Report</button>
+            <button class="example-query prompt-btn" data-query="Energy consumption report May 2024">⚡ Energy Report</button>
+            <button class="example-query prompt-btn" data-query="Operator performance analysis May 2025">👥 Operator Analysis</button>
+        </div>
+
+        <!-- Chat Input -->
+        <div class="input-area">
+            <div class="input-container">
+                <input type="text" id="chatInput" placeholder="Ask me about your manufacturing data..." disabled>
+                <button class="attach-btn" title="Attach file"><i class="fas fa-paperclip"></i></button>
+            </div>
+            <button id="sendChat" class="send-btn" disabled>
+                <i class="fas fa-paper-plane"></i> Send
+            </button>
+        </div>
+    </div>
+
+    <!-- RIGHT SIDEBAR -->
+    <div class="right-sidebar">
+        <h5 class="text-light mb-3"><i class="fas fa-chart-bar"></i> Generated Charts</h5>
+        <div id="chartsContainer" class="charts-container">
+            <div class="text-muted">Charts will appear here as they are generated.</div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Modal -->
+<div class="modal fade" id="loadingModal" tabindex="-1" data-bs-backdrop="static">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+            <div class="modal-body text-center py-4">
+                <div class="spinner-border text-info mb-3" role="status"></div>
+                <div>Processing your request...</div>
+                <small class="text-muted">This may take a few moments</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Export Modal -->
+<div class="modal fade" id="exportModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+                <h5 class="modal-title">Export Options</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Choose export format:</p>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-danger" id="exportPDF">
+                        <i class="fas fa-file-pdf me-2"></i>Export as PDF
+                    </button>
+                    <button class="btn btn-info" id="exportImages">
+                        <i class="fas fa-images me-2"></i>Export Charts as Images
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        initializeApp(); // Calls setupEventListeners, loadMachines, initializeChat, etc.
+    });
+</script>
+{% endblock %}
